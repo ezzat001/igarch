@@ -1,0 +1,45 @@
+{% extends 'bootstrap/base.html' %}
+{% block head %}
+  <title> Stalk  Accounts </title>
+{% endblock %}
+{%block body%}
+<div class="container bg-light" style="max-height: 600px;overflow:scroll;">
+  <div style="color:#3a373b;font-family:'fantasy';font-size:19px;">
+
+    <center><em>Stalked Accounts</em> <span class="badge badge-danger badge-pill">{{ total_uncovered }}</span></center>
+    <br>
+
+    <form method="POST"> {% csrf_token %}
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" name="username" placeholder="Username" aria-label="Username" aria-describedby="basic-addon2">
+
+    </div>
+    <div class="container-login100-form-btn">
+      <div class="wrap-login100-form-btn">
+        <div class="login100-form-bgbtn"></div>
+        <button class="login100-form-btn" type='submit'>
+          Add to List
+        </button>
+      </div>
+    </div>
+  </form>
+  <br><br>
+    <ul class="list-group list-group-flush" style='color:#cd1189'>
+
+      {% for target in acclist %}
+      <li class="list-group-item"><left>{{target.stalked_account}}<left>
+        <a class="nav-link" target="_blank" href="https://instagram.com/{{target.stalked_account}}" style='float:right;color: #cd1189;'>
+          <b>Visit</b>
+        </a>
+        <a class="nav-link" target="_blank" href="/stalkdetails={{target.stalked_account}}" style='float:right;color: #cd1189;'>
+          <b>What's New</b>
+        </a>
+      </li>
+
+      {% endfor %}
+
+
+    </ul>
+  </div>
+</div>
+{%endblock%}

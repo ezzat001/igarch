@@ -1,0 +1,24 @@
+{% extends 'bootstrap/base.html' %}
+{% block head %}
+  <title> Who Unfollowed you</title>
+{% endblock %}
+{%block body%}
+<div class="container bg-light" style="max-height: 600px;overflow:scroll;">
+  <div style="color:#3a373b;font-family:'fantasy';font-size:19px;">
+  <center><em>New Unfollowers</em> <span class="badge badge-danger badge-pill">{{ unfollowers }}</span></center>
+  <span class="text-muted"><small>Total Unfollowers: {{unfollowers_all}}</small></span>
+  <!--<a href="/unfollow_unfollowers" style="float:right; color: #cd1189;"><b>Unfollow Them</b></a></div>-->
+  <ul class="list-group list-group-flush" style='color:#cd1189'>
+    {% for unfollower in unfollowers_list %}
+    <li class="list-group-item"><left>{{unfollower}}<left><a class="nav-link" target="_blank" href="https://instagram.com/{{unfollower}}" style='float:right;color: #cd1189;'><b>Visit</b></a>
+    </li>
+
+    {% endfor %}
+
+
+
+
+  </ul>
+  </div>
+</div>
+{%endblock%}

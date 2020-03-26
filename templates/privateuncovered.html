@@ -1,0 +1,63 @@
+{% extends 'bootstrap/base.html' %}
+{% block head %}
+  <title> Stalk Private Accounts </title>
+{% endblock %}
+{%block body%}
+<div class="container bg-light" style="max-height: 600px;overflow:scroll;">
+  <div style="color:#3a373b;font-family:'fantasy';font-size:19px;">
+
+    <center><em>Uncovered Accounts</em> <span class="badge badge-danger badge-pill">{{ total_uncovered }}</span></center>
+    <span class="text-muted"><small>Total covered accounts: {{total_covered}}</small></span>
+
+    <form method="POST"> {% csrf_token %}
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" name="username" placeholder="Username" aria-label="Username" aria-describedby="basic-addon2">
+
+    </div>
+    <div class="container-login100-form-btn">
+      <div class="wrap-login100-form-btn">
+        <div class="login100-form-bgbtn"></div>
+        <button class="login100-form-btn" type='submit'>
+          Add
+        </button>
+      </div>
+    </div>
+  </form>
+  <br><br>
+    <ul class="list-group list-group-flush" style='color:#cd1189'>
+      <center><span>UNCOVERED ACCOUNTS</span></center>
+
+      {% for target in target_list %}
+      {% if target.uncovered %}
+      <li class="list-group-item"><left>{{target.username}}<left>
+        <a class="nav-link" target="_blank" href="https://instagram.com/{{target.username}}" style='float:right;color: #cd1189;'>
+          <b>Visit</b>
+        </a>
+        <a class="nav-link" target="_blank" href="/uncover={{target.username}}" style='float:right;color: #cd1189;'>
+          <b>See Photos</b>
+        </a>
+      </li>
+      {% else %}
+
+      {% endif %}
+      {% endfor %}
+      <hr>
+      <center><span>COVERED ACCOUNTS</span></center>
+
+      {% for target in target_list %}
+
+      {% if not target.uncovered %}
+      <li class="list-group-item"><left>{{target.username}}</left>
+        <a class="nav-link" target="_blank" href="https://instagram.com/{{target.username}}" style='float:right;color: #cd1189;'>
+          <b>Visit</b>
+        </a>
+
+      </li>
+      {% endif %}
+      {% endfor %}
+
+
+    </ul>
+  </div>
+</div>
+{%endblock%}

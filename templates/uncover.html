@@ -1,0 +1,25 @@
+{% extends 'bootstrap/base.html' %}
+{% block head %}
+  <title>UNCOVERED</title>
+{% endblock %}
+{%block body %}
+<div class="container bg-light">
+  <div class="container">
+
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+
+    {% for img in imgs %}
+
+        <img src="/media/{{img}}"  style="width: 250px; height:300px;">
+
+
+      {% endfor %}
+
+    </div>
+
+
+    </div>
+  </div>
+</div>
+{%endblock%}

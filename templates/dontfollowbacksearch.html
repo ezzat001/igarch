@@ -1,0 +1,29 @@
+{% extends 'bootstrap/base.html' %}
+{% block head %}
+  <title>Who Don't Follow Back</title>
+{% endblock %}
+{%block body%}
+<div class="container bg-light" style="max-height: 600px;overflow:scroll;">
+  <div style="color:#3a373b;font-family:'fantasy';font-size:19px;">
+
+    <center><em>Who Don't Follow this Account Back</em> <span class="badge badge-danger badge-pill">{{ total_uncovered }}</span></center>
+    <form method="POST"> {% csrf_token %}
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" name="username" placeholder="Username" aria-label="Username" aria-describedby="basic-addon2">
+
+    </div>
+    <div class="container-login100-form-btn">
+      <div class="wrap-login100-form-btn">
+        <div class="login100-form-bgbtn"></div>
+        <button class="login100-form-btn" type='submit'>
+          Check Who don't follow back
+        </button>
+
+      </div>
+    </div>
+  </form>
+  <br><br>
+
+  </div>
+</div>
+{%endblock%}

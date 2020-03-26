@@ -1,0 +1,27 @@
+{% extends 'bootstrap/base.html' %}
+{% block head %}
+  <title>Top Likers</title>
+{% endblock %}
+{%block body %}
+<div class="container bg-light" style="max-height: 600px;overflow:scroll;">
+  <div style="color:#3a373b;font-family:'fantasy';font-size:19px;">
+  <center>Top Likers<br><em>Total Likers</em> <span class="badge badge-danger badge-pill">{{ likers_total }}</span></center>
+<br></div>
+  <ul class="list-group list-group-flush" style='color:#cd1189'>
+    {% for key,value in dict.items %}
+
+      <li class="list-group-item">    <img src="{{value.1}}" class="rounded-circle" style="width: 50px; height:50px;">
+<left>{{key}}<left>
+        <div style='float:right;'>  <a class="nav-link" target="_blank" href="https://instagram.com/{{key}}" style='float:right;color: #cd1189;'><b>Visit</b></a>
+      {{value.0}}/{{pics_total}}</div>
+      </li>
+
+    {% endfor %}
+
+
+
+
+  </ul>
+  </div>
+</div>
+{%endblock%}

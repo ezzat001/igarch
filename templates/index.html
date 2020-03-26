@@ -1,0 +1,94 @@
+{% extends 'bootstrap/base.html' %}
+{% block head %}
+  <title>Home</title>
+{% endblock %}
+{% block body %}
+	<div class="limiter">
+		<div class="container-login100" style="background-image: url('static/home/images/bg-01.jpg');">
+			{% if not request.user.is_authenticated %}
+			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+				<form class="login100-form validate-form" method="POST">				{% csrf_token %}
+
+					<span class="login100-form-title p-b-49">
+						Login
+					</span>
+					{% if error %}
+					<span class='text-danger'>&nbsp;<b>ERROR: {{error}}</b></span>
+					{% endif %}
+					<div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
+						<span class="label-input100">Username</span>
+						<input class="input100" type="text" placeholder="Type your username" name='user'>
+						<span class="focus-input100" data-symbol="&#xf206;"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate="Password is required">
+						<span class="label-input100">Password</span>
+						<input class="input100" type="password" placeholder="Type your password" name='pass'>
+						<span class="focus-input100" data-symbol="&#xf190;"></span>
+					</div>
+
+					<div class="text-right p-t-8 p-b-31">
+						<a href="/tos">
+							Terms of Service
+						</a>
+					</div>
+
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button class="login100-form-btn" type='submit'>
+								Login
+							</button>
+						</div>
+					</div>
+
+
+
+				</form>
+			</div>
+			{%else%}
+      <div class="container bg-light" style="max-height: 600px;overflow:scroll;">
+        <div style="color:#3a373b;font-family:'fantasy';font-size:19px;">
+          <br>
+        <center><em><h3>Here's a list of Facts</h3></em></center>
+        <br><br>
+        <!--<a href="/unfollow_unfollowers" style="float:right; color: #cd1189;"><b>Unfollow Them</b></a></div>-->
+        <ul class="list-group list-group-flush" style='color:#cd1189'>
+          <li class="list-group-item">
+            1. All the Functions and Things you need are Found in the Navigation Bar (White Bar)
+          </li>
+          <li class="list-group-item">
+            2. Sometimesthe page will take too much time loading<br>
+            it's all about the data it's dealing with so don't be Confused
+          </li>
+          <li class="list-group-item">
+            3. Some Functions Require You to login again later to View the Changes
+            <br>like Unfollowers and Full Stalk Profile
+
+
+          </li>
+          <center>IN THE NEED of any help or reporting a bug please contact me</center><br>
+            <br>
+            Whatsapp:  +201553956506
+            <br>
+            Instagram: ahmedezzatpy 
+
+
+
+
+
+
+
+
+
+
+       </ul>
+       </div>
+     </div>
+			{%endif%}
+		</div>
+	</div>
+
+
+
+{% endblock %}

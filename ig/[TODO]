@@ -1,0 +1,38 @@
+#23 - 2 - 2020                                                                  # Easy  Medium  Hard
+                                                                                > 0     11      3
+[Stalk Your Instagram]
+Retrieve all your photos in .zip file to download
+Check Who Followed You Recently
+Check Who Doesn't Follow you Back                       - DONE
+Check Who un-followed you Recently and unfollow them    - DONE
+Check Who Didn't Like any Post since he Followed you    - DONE
+Check Who Likes you Most                                - DONE
+===============================
+#12 - 3 - 2020
+[Stalk on Instagram Users]
+See Someone Photos if his account is Private            - DONE
+See Who they've followed Recently                       - DONE                  Medium
+See Who they've un-followed Recently                    - DONE                  Medium
+Who Unfollowed Them Recently                            - DONE
+Top Likers of Them                                      - DONE
+Who Didn't Like Them Yet                                - DONE
+Who Don't Follow Them Back                              - DONE
+Check Who they've liked Recently                        - XXX                   Hard
+Retrieve all photos of any user in .zip and download it - X                     Medium
+================================
+[ENHANCEMENTS]
+Put Username in Unfollowers List instead of id to speed up the id processing - X
+Just One Instagram Login to Speed up website login                           - XX
+Remove Automatic Login                                                       - XX
+================================
+Save Users and Passwords in another model
+================================
+Un-Follow Everyone                                      - X                     Medium
+Un-Follow Selected List                                 - X                     Medium
+Remove All your Following                               - X                     Medium
+Remove Selected Following                               - X                     Medium
+Check Who Blocked you Recently                          - XXX                   Hard
+Check Who Unliked your Photos                           - X                     Medium
+Who Likes your media and not following you              - X    #PROBLEM         Medium
+Who Didn't like you since while                         - XX                    Medium
+Bot Follows and Unfollow People                         - XXX                   Hard

@@ -1,0 +1,29 @@
+{% extends 'bootstrap/base.html' %}
+{% block head %}
+  <title> Who Don't Follow back</title>
+{% endblock %}
+{%block body%}
+<div class="container bg-light" style="max-height: 600px;overflow:scroll;">
+  <div style="color:#3a373b;font-family:'fantasy';font-size:19px;">
+  <center>People Who Don't Follow you back<br><em>Total</em> <span class="badge badge-danger badge-pill">{{ dontfbtotal }}</span></center>
+<br></div>
+  <ul class="list-group list-group-flush" style='color:#cd1189'>
+    {% for dfub in dontfblist %}
+    <!-- <img src="{{dfub.1}}" class="rounded-circle"> -->
+    <li class="list-group-item">
+
+      <img src="{{dfub.profile_pic_url}}" class="rounded-circle" style="width: 50px; height:50px;">
+
+      <left>{{dfub.username}}<left><!--<a class="nav-link" target="_blank" href="/unfollow-dfb/{{dfub.0}}" style='float:right;color: #cd1189;'><b>UnFollow</b></a>-->
+    <a class="nav-link" target="_blank" href="https://instagram.com/{{dfub.username}}" style='float:right;color: #cd1189;'><b>Visit</b></a>
+    </li>
+
+    {% endfor %}
+
+
+
+
+  </ul>
+  </div>
+
+{%endblock%}
