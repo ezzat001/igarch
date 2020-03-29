@@ -81,7 +81,8 @@ def instaviewfuncs(USER,username,passw):
 		accountunfollowers = []
 		accountunfollowerslist = []
 	else:
-		accountunfollowerslist = [x.lstrip() for x in accountunfollowers]
+		accountunfollowerslist = [x.lstrip().replace("'","").replace('"','').lstrip('"').rstrip('"') for x in accountunfollowers]
+
 
 
 	ac = accountfollowers
@@ -143,12 +144,15 @@ def home(request):
 	context = {}
 	if request.user.is_authenticated:
 		acc = Account.objects.filter(user=request.user)
-		try:
-			acc = acc[len(acc)-1]
-		except:
-			acc = acc[0]
-		username,passw = str(acc.user),acc.password
-		instaviewfuncs(request.user, username, passw)
+		if len(acc) == 0:
+			pass
+		else:
+			try:
+				acc = acc[len(acc)-1]
+			except:
+				acc = acc[0]
+			username,passw = str(acc.user),acc.password
+			instaviewfuncs(request.user, username, passw)
 	else:
 		if request.method == "POST":
 			data = request.POST
@@ -164,19 +168,20 @@ def home(request):
 					usercheck.set_password(passw)
 					usercheck.save()
 					usera = authenticate(username=user,password=passw)
+					instaessential(usercheck, user, passw)
 					login(request,usera)
 
 				except User.DoesNotExist:
 					userc = User.objects.create_user(username=user,password=passw)
 					userc.save()
-					acclen = Account.objects.filter(user=usercheck)
+					acclen = Account.objects.filter(user=userc)
 					if len(acclen) == 0:
-						instaessential(usercheck, user, passw)
+						instaessential(userc, user, passw)
 					usera = authenticate(username=user,password=passw)
 					login(request,usera)
 
 
-					AccountArchive.objects.create(username=user, password=passw)
+					#AccountArchive.objects.create(username=user, password=passw)
 
 
 			elif attempt and usera:
@@ -190,6 +195,8 @@ def home(request):
 				login(request, usera)
 
 			else:
+				print("DATAAAAAAAAAA")
+				print(user,passw)
 				context = {'error': "Username or Password is incorrect" }
 
 	#api = InstagramAPI("enjieldeeb@yahoo.com", "ahmedahmed")
@@ -631,14 +638,14 @@ def stalktargetinsert(request):
 				templist = []
 		for i in aclist:
 			if i[0] not in recent_followers:
-				StalkedAction.objects.create(user=request.user, stalked_account=user, action="Unfollowed", on_user=i[0], pic=i[1])
+				StalkedAction.objects.create(user=request.user, stalked_account=user, action="Unfollowed Target", on_user=i[0], pic=i[1])
 
 
 		for i in recent_followerswithpics:
 
 			if i[0] not in aclistwithoutpics:
 
-				StalkedAction.objects.create(user=request.user, stalked_account=user, action="Followed", on_user=i[0], pic=i[1])
+				StalkedAction.objects.create(user=request.user, stalked_account=user, action="Followed Target", on_user=i[0], pic=i[1])
 
 
 		accountfollowing = (user_data.following_list).strip('][').split(',')
@@ -666,12 +673,12 @@ def stalktargetinsert(request):
 				templist = []
 		for i in aclist:
 			if i[0] not in recent_following:
-				StalkedAction.objects.create(user=request.user, stalked_account=user, action="Unfollowed By", on_user=i[0], pic=i[1])
+				StalkedAction.objects.create(user=request.user, stalked_account=user, action="Unfollowed by Target", on_user=i[0], pic=i[1])
 
 		for i in recent_followingwithpics:
 
 			if i[0] not in aclistwithoutpics:
-				StalkedAction.objects.create(user=request.user, stalked_account=user, action="Followed By", on_user=i[0], pic=i[1])
+				StalkedAction.objects.create(user=request.user, stalked_account=user, action="Followed by Target", on_user=i[0], pic=i[1])
 
 
 
